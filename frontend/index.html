@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>خزنتي</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <!-- شاشة القفل: إنشاء الخزنة أو فتحها -->
+    <section id="lock" hidden>
+      <h1>خزنتي</h1>
+      <p id="lock-hint"></p>
+      <form id="lock-form">
+        <label>كلمة السر الرئيسية
+          <input id="master" type="password" required autocomplete="current-password">
+        </label>
+        <label id="confirm-row" hidden>تأكيد كلمة السر الرئيسية
+          <input id="master2" type="password" autocomplete="new-password">
+        </label>
+        <p id="setup-warn" class="warn" hidden>لا توجد طريقة لاستعادة كلمة السر الرئيسية. إن نسيتها ستضيع كل البيانات المحفوظة.</p>
+        <button id="lock-submit" type="submit">فتح الخزنة</button>
+      </form>
+      <p id="lock-error" role="alert" hidden></p>
+    </section>
+
+    <!-- الخزنة -->
+    <section id="vault" hidden>
+      <header>
+        <h1>خزنتي</h1>
+        <p id="count"></p>
+        <button id="lock-btn" type="button">قفل</button>
+      </header>
+      <div class="bar">
+        <input id="search" type="search" placeholder="ابحث بالموقع أو اسم المستخدم" aria-label="بحث" autocomplete="off">
+        <button id="add-btn" type="button" class="primary">إضافة حساب</button>
+      </div>
+      <p id="error" role="alert" hidden></p>
+      <ul id="list"></ul>
+      <p id="empty" hidden></p>
+    </section>
+  </main>
+
+  <p id="toast" role="status" hidden></p>
+
+  <dialog id="editor">
+    <form id="editor-form" autocomplete="off">
+      <h2 id="editor-title"></h2>
+      <label>الموقع / التطبيق
+        <input name="site" required maxlength="100" placeholder="مثال: Facebook">
+      </label>
+      <label>الرابط (اختياري)
+        <input name="url" maxlength="300" dir="ltr" placeholder="facebook.com">
+      </label>
+      <label>اسم المستخدم
+        <input name="username" maxlength="150" dir="ltr">
+      </label>
+      <label>البريد الإلكتروني
+        <input name="email" maxlength="150" dir="ltr" inputmode="email">
+      </label>
+      <label>كلمة السر
+        <span class="pwrow">
+          <input name="password" type="password" required maxlength="500" dir="ltr" autocomplete="new-password">
+          <button id="toggle-pw" type="button">إظهار</button>
+          <button id="gen" type="button">توليد</button>
+        </span>
+      </label>
+      <label>ملاحظات
+        <textarea name="notes" maxlength="1000" rows="3"></textarea>
+      </label>
+      <p id="editor-error" role="alert" hidden></p>
+      <div class="actions">
+        <button type="submit" class="primary">حفظ</button>
+        <button id="cancel" type="button">إلغاء</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/crypto.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
